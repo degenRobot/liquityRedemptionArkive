@@ -10,7 +10,6 @@ export const redemptionHandler: EventHandlerFor<typeof TROVE_MANAGER, 'Redemptio
   ) => {
     const { _actualLUSDAmount, _ETHSent, _ETHFee } = event.args
 
-    
     const block = await store.retrieve(
       `getBlock: ${event.blockNumber}`,
       async () => await client.getBlock({ blockNumber: event.blockNumber }),
@@ -25,7 +24,7 @@ export const redemptionHandler: EventHandlerFor<typeof TROVE_MANAGER, 'Redemptio
       ethFee : Number(_ETHFee) / Number(1e18), 
       ethSent : Number(_ETHSent) /  Number(1e18),
       lusdAmount : Number(_actualLUSDAmount) / Number(1e18),
-      timestamp : Number(block), 
+      timestamp : Number(block.timestamp), 
       block : Number(event.blockNumber),
     })
 
