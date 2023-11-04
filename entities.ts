@@ -18,3 +18,27 @@ export const Redemption = createEntity<IRedemption>("Redemption", {
   block: { type: Number, index: true },
 
 });
+
+export const Transfer = createEntity('Transfer', {
+  token: String,
+  block: { type: Number, index: true },
+  hash: String,
+  from: String,
+  to: String,
+  value: Number,
+})
+
+// Contains current balance for all users
+export const Balance = createEntity('Balance', {
+  token: String,
+  user: String,
+  balance: String,
+})
+
+// Contains all balance changes for every user
+export const BalanceHistory = createEntity('BalanceHistory', {
+  token: String,
+  block: { type: Number, index: true },
+  user: String,
+  balance: String,
+})
